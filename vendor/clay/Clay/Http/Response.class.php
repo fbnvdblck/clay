@@ -13,7 +13,7 @@ class Response {
     
     // Method : Get page
     public function getPage() {
-        return $page;
+        return $this->page;
     }
     
     // Method : Set page

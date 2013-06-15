@@ -5,7 +5,7 @@
 
 // Function : Load a class
 function autoload($class) {
-    require_once str_replace('\\', '/', $class) . '.class.php';
+    require __DIR__ . '/' . str_replace('\\', '/', $class) . '.class.php';
 }
 
 class Clay {

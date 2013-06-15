@@ -5,9 +5,10 @@
 
 namespace Clay\Application;
 
-use Clay\Http;
+use Clay\Http\Request;
+use Clay\Http\Response;
 
-abstract class Application {
+class Application {
 
     // Attributes
     private $request;
@@ -16,32 +17,34 @@ abstract class Application {
 
 
     // Constructor
-    public function __construct() {
-        $request = new Request();
-        $response = new Response();
-        $name = '';
+    public function __construct($name) {
+        $this->request = new Request();
+        $this->response = new Response();
+        $this->name = $name;
     }
 
     // Methods : Encapsulation
     // Getters
     public function getRequest() {
-        return $request;
+        return $this->request;
     }
 
     public function getResponse() {
-        return $response;
+        return $this->response;
     }
 
     public function getName() {
-        return $name;
+        return $this->name;
     }
 
     // Method : Run application
-    public abstract function run();
+    public function run() {
+        echo "Kernel call!";
+    }
 
     // Method : Get default string value
     public function __toString() {
-        return $name;
+        return $this->name;
     }
 }
 ?>

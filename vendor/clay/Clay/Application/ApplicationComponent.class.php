@@ -19,7 +19,7 @@ abstract class ApplicationComponent {
     // Methods : Encapsulation
     // Getters
     public function getApp() {
-        return $app;
+        return $this->app;
     }
 }
 ?>
