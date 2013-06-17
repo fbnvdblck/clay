@@ -54,9 +54,7 @@ class Router {
 
         try {
             $configuration = $parser->parse(file_get_contents($file));
-        }
-
-        catch (ParseException $e) {
+        } catch (ParseException $e) {
             printf("Unable to parse the YAML string: %s", $e->getMessage());
         }
 
