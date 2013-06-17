@@ -71,13 +71,17 @@ class Route {
         $this->action = $action;
     }
 
+    public function setParameters($parameters) {
+        $this->parameters = $parameters;
+    }
+
     public function addParameter($name, $value) {
         $this->parameters[$name] = $value;
     }
 
     // Method : Match a URL and return parameters values
     public function match($url) {
-        if (preg_match('^' . $this->url . '$', $url, $args))
+        if (preg_match('`^' . $this->url . '$`', $url, $args))
             return $args;
         else
             return false;

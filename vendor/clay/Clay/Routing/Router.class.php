@@ -6,6 +6,7 @@
 namespace Clay\Routing;
 
 use Clay\Clay;
+use Clay\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Yaml\Parser;
 
 class Router {
@@ -29,8 +30,8 @@ class Router {
     public function getRoute($url) {
         foreach ($this->routes as $route) {
             if (($values = $route->match($url)) !== false) {
-                if ($route->hasArguments()) {
-                    $argsName = $route->getArguments();
+                if ($route->hasParameters()) {
+                    $argsName = $route->getParameters();
                     $args = array();
 
                     for ($i = 0; i < count($values); $i++)
@@ -43,24 +44,28 @@ class Router {
             }
         }
 
-        throw new \RuntimeException("No route for the specified URL");
+        throw new RouteNotFoundException("No route for the specified URL: " . $url);
     }
 
     // Method : Load routes
     public function load() {
-        $file = __DIR__ . '/' . Clay::CONFIG_ROUTING;
+        $file =  '../' . Clay::CONFIG_ROUTING;
         $parser = new Parser();
 
         try {
-            $configuration = $yaml->parse(file_get_contents($file));
+            $configuration = $parser->parse(file_get_contents($file));
         }
 
         catch (ParseException $e) {
             printf("Unable to parse the YAML string: %s", $e->getMessage());
         }
 
-        foreach($configuration['routes'] as $route)
+        foreach($configuration['routes'] as $route) {
+            if (!isset($route['parameters']))
+                $route['parameters'] = array();
+
             $this->addRoute(new Route($route['name'], $route['url'], $route['controller'], $route['action'], $route['parameters']));
+        }
     }
 }
 ?>

@@ -1,0 +1,11 @@
+routes:
+    - name: home
+      url: /
+      controller: core
+      action: home
+    
+    - name: about
+      url: /about
+      controller: about
+      action: about
+

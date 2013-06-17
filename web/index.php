@@ -2,8 +2,8 @@
 require '../vendor/clay/autoload.php';
 Clay::register();
 
-use Clay\Application\Application;
+use Clay\Application\ClayApplication;
 
-$app = new Application('Elhena');
-echo $app->getName();
+$app = new ClayApplication('test');
+$app->run();
 ?>

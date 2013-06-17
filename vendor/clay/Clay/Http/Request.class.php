@@ -29,7 +29,9 @@ class Request {
 
     // Method : Get the request URI
     public function getURI() {
-        return $_SERVER['REQUEST_URI'];
+        $uri = $_SERVER['REQUEST_URI'];
+        $uri = preg_replace('`^/clay/web(.*)$`', '$1', $uri);
+        return $uri;
     }
 }
 ?>

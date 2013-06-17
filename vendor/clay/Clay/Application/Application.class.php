@@ -8,7 +8,7 @@ namespace Clay\Application;
 use Clay\Http\Request;
 use Clay\Http\Response;
 
-class Application {
+abstract class Application {
 
     // Attributes
     private $request;
@@ -38,9 +38,7 @@ class Application {
     }
 
     // Method : Run application
-    public function run() {
-        echo "Kernel call!";
-    }
+    public abstract function run();
 
     // Method : Get default string value
     public function __toString() {
