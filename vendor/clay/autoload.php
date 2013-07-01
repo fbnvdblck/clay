@@ -3,7 +3,7 @@
  * @author Fabien Vanden Bulck <fabien@elhena.com>
  */
 
-// Function : Load a class
+// Function : Load a class from clay
 function autoload($class) {
     require __DIR__ . '/' . str_replace('\\', '/', $class) . '.class.php';
 }

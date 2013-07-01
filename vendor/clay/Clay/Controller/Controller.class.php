@@ -16,9 +16,11 @@ abstract class Controller {
 
 
 	// Constructor
-	public function __construct(Kernel $kernel) {
-		$this->kernel = $kernel;
-		$this->router = $kernel->getRouter();
+	public function __construct(Kernel $kernel = null) {
+		if ($kernel != null) {
+			$this->kernel = $kernel;
+			$this->router = $kernel->getRouter();
+		}
 	}
 
 	// Methods : Encapsulation

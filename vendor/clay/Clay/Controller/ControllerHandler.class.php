@@ -16,19 +16,24 @@ class ControllerHandler {
 		$controllerName = $controllerName . 'Controller';
 		$actionName = $actionName . 'Action';
 
-		if (class_exists($controllerName)) {
-			$controller = new $controllerName($kernel);
+		if ((include('../src/controller/' . $controllerName . '.class.php')) == true) {
+			if (class_exists($controllerName)) {
+				$controller = new $controllerName($kernel);
 
-			if (method_exists($controller, $actionName)) {
-				return $controller->$actionName();
+				if (method_exists($controller, $actionName)) {
+					return $controller->$actionName();
+				}
+
+				else
+					throw new ControllerActionNotFoundException("The method of " . $controllerName . " called " . $actionName . " doesn't exist");
 			}
 
 			else
-				throw new ControllerActionNotFoundException("The method of " . $controllerName . " called " . $actionName . " doesn't exist");
+				throw new ControllerNotFoundException("The controller called " . $controllerName . " doesn't exist");
 		}
 
-		else
-			throw new ControllerNotFoundException("The controller called " . $controllerName . " doesn't exist");
-	} 
+		else 
+			throw new ControllerActionNotFoundException("The method of " . $controllerName . " called " . $actionName . " doesn't exist");
+	}
 }
 ?>
