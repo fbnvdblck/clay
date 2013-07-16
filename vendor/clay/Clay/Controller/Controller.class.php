@@ -6,6 +6,7 @@
 namespace Clay\Controller;
 
 use Clay\Core\Kernel;
+use Clay\Clay;
 
 abstract class Controller {
 
@@ -26,7 +27,7 @@ abstract class Controller {
 	// Methods : Encapsulation
 	// Getters
 	public function getRouter() {
-		return $this->kernel;
+		return $this->kernel->getRouter();
 	}
 }
 ?>

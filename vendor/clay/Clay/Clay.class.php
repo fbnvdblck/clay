@@ -13,8 +13,9 @@ class Clay {
 
     // Clay resources
     const RESOURCE_CACHE = 'cache/';
-    const RESOURCE_CONTROLLER = 'controller/';
-    const RESOURCE_VIEW = 'view/';
+    const RESOURCE_MODEL = 'src/model/';
+    const RESOURCE_VIEW = 'src/view/';
+    const RESOURCE_CONTROLLER = 'src/controller/';
 
     // Clay configution
     const CONFIG_ROUTING = 'config/routing.yml';

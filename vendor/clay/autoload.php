@@ -3,11 +3,6 @@
  * @author Fabien Vanden Bulck <fabien@elhena.com>
  */
 
-// Function : Load a class from clay
-function autoload($class) {
-    require __DIR__ . '/' . str_replace('\\', '/', $class) . '.class.php';
-}
-
 class Clay {
 
     // Constants
@@ -16,7 +11,20 @@ class Clay {
 
     // Method : Register autolad
     public static function register() {
-        spl_autoload_register('autoload');
+
+    	// Clay
+        spl_autoload_register(array(new self, 'autoload'));
+        spl_autoload_register(array(new self, 'autoloadFromModel'));
     }
+
+    // Method : Load a class from clay
+	private static function autoload($class) {
+    	@include __DIR__ . '/' . str_replace('\\', '/', $class) . '.class.php';
+	}
+
+	// Method : Load a class from model
+	private static function autoloadFromModel($class) {
+		require '../src/model/' . str_replace('\\', '/', $class) . '.class.php';
+	}
 }
 ?>
