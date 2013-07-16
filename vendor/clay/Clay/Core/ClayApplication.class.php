@@ -3,7 +3,9 @@
  * @author Fabien Vanden Bulck <fabien@elhena.com>
  */
 
-namespace Clay\Application;
+namespace Clay\Core;
+
+use Clay\Http\Exception\PageNotFoundException;
 
 class ClayApplication extends Application {
     
@@ -15,7 +17,13 @@ class ClayApplication extends Application {
     // Method : Run
     public function run() {
         $kernel = new Kernel($this);
-        $kernel->execute();
+
+        try {
+            $kernel->execute();
+            $this->getResponse()->send();
+        } catch(PageNotFoundException $e) {
+            $this->error404();
+        }
     }
 }
 ?>

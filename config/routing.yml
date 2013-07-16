@@ -3,7 +3,7 @@ routes:
       url: /
       controller: core
       action: home
-    
+
     - name: about
       url: /about
       controller: about

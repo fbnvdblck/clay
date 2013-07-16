@@ -5,7 +5,7 @@
 
 namespace Clay\Controller;
 
-use Clay\Application\Kernel;
+use Clay\Core\Kernel;
 
 abstract class Controller {
 

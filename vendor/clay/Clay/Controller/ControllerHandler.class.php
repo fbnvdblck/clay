@@ -5,7 +5,7 @@
 
 namespace Clay\Controller;
 
-use Clay\Application\Kernel;
+use Clay\Core\Kernel;
 use Clay\Controller\Exception\ControllerNotFoundException;
 use Clay\Controller\Exception\ControllerActionNotFoundException;
 
@@ -16,7 +16,8 @@ class ControllerHandler {
 		$controllerName = $controllerName . 'Controller';
 		$actionName = $actionName . 'Action';
 
-		if ((include('../src/controller/' . $controllerName . '.class.php')) == true) {
+		if (file_exists('../src/controller/' . $controllerName . '.class.php')) {
+			include_once('../src/controller/' . $controllerName . '.class.php');
 			if (class_exists($controllerName)) {
 				$controller = new $controllerName($kernel);
 
@@ -33,7 +34,7 @@ class ControllerHandler {
 		}
 
 		else 
-			throw new ControllerActionNotFoundException("The method of " . $controllerName . " called " . $actionName . " doesn't exist");
+			throw new ControllerNotFoundException("The controller called " . $controllerName . " doesn't exist");
 	}
 }
 ?>

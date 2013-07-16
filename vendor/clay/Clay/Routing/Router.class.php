@@ -29,13 +29,13 @@ class Router {
     // Method : Get route
     public function getRoute($url) {
         foreach ($this->routes as $route) {
-            if (($values = $route->match($url)) !== false) {
+            if (($values = $route->match($url)) != false) {
                 if ($route->hasParameters()) {
                     $argsName = $route->getParameters();
                     $args = array();
 
                     for ($i = 0; i < count($values); $i++)
-                        $args[$argsName[$i]] = $values[$i];
+                        $args[$argsName[$i]] = $values[$i+1];
 
                     $route->setArguments($args);
                 }

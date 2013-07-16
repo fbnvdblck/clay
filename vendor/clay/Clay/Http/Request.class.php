@@ -30,7 +30,7 @@ class Request {
     // Method : Get the request URI
     public function getURI() {
         $uri = $_SERVER['REQUEST_URI'];
-        $uri = preg_replace('`^/clay/web(.*)$`', '$1', $uri);
+        $uri = preg_replace('#^/clay/web(.*)$#', '$1', $uri);
         return $uri;
     }
 }

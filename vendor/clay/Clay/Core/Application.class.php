@@ -3,7 +3,7 @@
  * @author Fabien Vanden Bulck <fabien@elhena.com>
  */
 
-namespace Clay\Application;
+namespace Clay\Core;
 
 use Clay\Http\Request;
 use Clay\Http\Response;
@@ -43,6 +43,13 @@ abstract class Application {
     // Method : Get default string value
     public function __toString() {
         return $this->name;
+    }
+
+    // Method : Return error 404
+    public function error404() {
+        header('HTTP/1.1 404 Not Found');
+        echo "Not page found";
+        exit;
     }
 }
 ?>

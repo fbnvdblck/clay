@@ -2,7 +2,7 @@
 require '../vendor/clay/autoload.php';
 Clay::register();
 
-use Clay\Application\ClayApplication;
+use Clay\Core\ClayApplication;
 
 $app = new ClayApplication('test');
 $app->run();

@@ -81,7 +81,7 @@ class Route {
 
     // Method : Match a URL and return parameters values
     public function match($url) {
-        if (preg_match('`^' . $this->url . '$`', $url, $args))
+        if (preg_match("#^" . $this->url . "$#", $url, $args) == 1)
             return $args;
         else
             return false;

@@ -3,7 +3,7 @@
  * @author Fabien Vanden Bulck <fabien@elhena.com>
  */
 
-namespace Clay\Application;
+namespace Clay\Core;
 
 abstract class ApplicationComponent {
 

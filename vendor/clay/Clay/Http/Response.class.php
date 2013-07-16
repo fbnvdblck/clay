@@ -29,9 +29,11 @@ class Response {
     // Method : Redirect
     public function redirect($location) {
         header('Location: ' . $location);
+        exit;
     }
 
     public function send() {
+        echo $this->page;
     }
 
     public function setCookie($key, $value, $exire = 0, $path = null, $domain = null, $secure = false, $httpOnly = true) {
