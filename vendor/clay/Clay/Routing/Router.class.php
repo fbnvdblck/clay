@@ -34,10 +34,10 @@ class Router {
                     $argsName = $route->getParameters();
                     $args = array();
 
-                    for ($i = 0; i < count($values); $i++)
+                    for ($i = 0; $i < count($argsName); $i++)
                         $args[$argsName[$i]] = $values[$i+1];
 
-                    $route->setArguments($args);
+                    $route->setParameters($args);
                 }
 
                 return $route;

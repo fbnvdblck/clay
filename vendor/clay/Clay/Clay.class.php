@@ -13,7 +13,6 @@ class Clay {
 
     // Clay resources
     const RESOURCE_CACHE = 'cache/';
-    const RESOURCE_MODEL = 'model/';
     const RESOURCE_CONTROLLER = 'controller/';
     const RESOURCE_VIEW = 'view/';
 

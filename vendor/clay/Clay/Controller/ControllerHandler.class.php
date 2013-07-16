@@ -12,7 +12,7 @@ use Clay\Controller\Exception\ControllerActionNotFoundException;
 class ControllerHandler {
 
 	// Method : Call a controller by name
-	public static function call($controllerName, $actionName, Kernel $kernel) {
+	public static function call($controllerName, $actionName, $parameters, Kernel $kernel) {
 		$controllerName = $controllerName . 'Controller';
 		$actionName = $actionName . 'Action';
 
@@ -22,7 +22,10 @@ class ControllerHandler {
 				$controller = new $controllerName($kernel);
 
 				if (method_exists($controller, $actionName)) {
-					return $controller->$actionName();
+					if ($parameters != null)
+						return $controller->$actionName($parameters);
+					else
+						return $controller->$actionName();
 				}
 
 				else

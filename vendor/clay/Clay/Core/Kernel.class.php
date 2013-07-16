@@ -48,8 +48,8 @@ class Kernel extends ApplicationComponent {
 
         // Page
         try {
-            $page = ControllerHandler::call($route->getController(), $route->getAction(), $this);
-            echo $page;
+            $page = ControllerHandler::call($route->getController(), $route->getAction(), $route->getParameters(), $this);
+            $this->getApp()->getResponse()->setPage($page);
         } catch(ControllerNotFoundException $e) {
             throw new PageNotFoundException();
         } catch(ControllerActionNotFoundException $e) {

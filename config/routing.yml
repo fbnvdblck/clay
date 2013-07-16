@@ -4,8 +4,10 @@ routes:
       controller: core
       action: home
 
-    - name: about
-      url: /about
-      controller: about
-      action: about
+    - name: hello
+      url: /hello/([a-z]+)
+      controller: regex
+      action: hello
+      parameters:
+        - name
 
