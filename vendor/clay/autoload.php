@@ -12,15 +12,21 @@ class Clay {
     // Method : Register autolad
     public static function register() {
 
-    	// Clay
-        spl_autoload_register(array(new self, 'autoload'));
+    	// Clay & components
+        spl_autoload_register(array(new self, 'autoloadClay'));
+        spl_autoload_register(array(new self, 'autoloadTwig'));
         spl_autoload_register(array(new self, 'autoloadFromModel'));
     }
 
     // Method : Load a class from clay
-	private static function autoload($class) {
+	private static function autoloadClay($class) {
     	@include __DIR__ . '/' . str_replace('\\', '/', $class) . '.class.php';
 	}
+
+    // Method
+    private static function autoloadTwig($class) {
+        @include __DIR__ . '/' . str_replace(array('_', "\0"), array('/', ''), $class).'.php';
+    }
 
 	// Method : Load a class from model
 	private static function autoloadFromModel($class) {

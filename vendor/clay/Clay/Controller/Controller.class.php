@@ -21,6 +21,7 @@ abstract class Controller {
 		if ($kernel != null) {
 			$this->kernel = $kernel;
 			$this->router = $kernel->getRouter();
+			$this->twig = $kernel->getTwig();
 		}
 	}
 
@@ -28,6 +29,15 @@ abstract class Controller {
 	// Getters
 	public function getRouter() {
 		return $this->kernel->getRouter();
+	}
+
+	public function getTwig() {
+		return $this->twig;
+	}
+
+	// Method : Render with Twig
+	public function render($page, $parameters) {
+		return $this->twig->render($page, $parameters);
 	}
 }
 ?>

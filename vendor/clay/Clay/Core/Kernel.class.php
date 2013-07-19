@@ -5,6 +5,7 @@
 
 namespace Clay\Core;
 
+use Clay\Clay;
 use Clay\Routing\Router;
 use Clay\Routing\Exception\RouteNotFoundException;
 use Clay\Controller\ControllerHandler;
@@ -17,18 +18,26 @@ class Kernel extends ApplicationComponent {
 
     // Attributes
     private $router;
+    private $twig;
 
 
     // Constructor
     public function __construct(Application $app) {
         parent::__construct($app);
         $this->router = new Router();
+
+        $twigLoader = new \Twig_Loader_Filesystem('../' . Clay::RESOURCE_VIEW);
+        $this->twig = new \Twig_Environment($twigLoader, array('cache' => '../' . Clay::RESOURCE_CACHE));
     }
 
     // Methods : Encapsulation
     // Getters
     public function getRouter() {
         return $this->router;
+    }
+
+    public function getTwig() {
+        return $this->twig;
     }
 
     // Method : Execute
