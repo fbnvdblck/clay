@@ -53,7 +53,6 @@ class Kernel extends ApplicationComponent {
         try {
             $route = $this->router->getRoute($request->getURI());
         } catch (RouteNotFoundException $e) {
-            Logger::k($e->getMessage());
             throw new PageNotFoundException($e->getMessage());
         }
 
