@@ -6,6 +6,7 @@
 namespace Clay\Core;
 
 use Clay\Http\Exception\PageNotFoundException;
+use Clay\Logging\Logger;
 
 class ClayApplication extends Application {
     
@@ -22,6 +23,7 @@ class ClayApplication extends Application {
             $kernel->execute();
             $this->getResponse()->send();
         } catch(PageNotFoundException $e) {
+            Logger::x($e);
             $this->error404();
         }
     }

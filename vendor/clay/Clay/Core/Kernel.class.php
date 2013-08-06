@@ -13,6 +13,7 @@ use Clay\Http\Response;
 use Clay\Http\Exception\PageNotFoundException;
 use Clay\Controller\Exception\ControllerActionNotFoundException;
 use Clay\Controller\Exception\ControllerNotFoundException;
+use Clay\Logging\Logger;
 
 class Kernel extends ApplicationComponent {
 
@@ -52,6 +53,7 @@ class Kernel extends ApplicationComponent {
         try {
             $route = $this->router->getRoute($request->getURI());
         } catch (RouteNotFoundException $e) {
+            Logger::x($e);
             throw new PageNotFoundException($e->getMessage());
         }
 
@@ -60,8 +62,10 @@ class Kernel extends ApplicationComponent {
             $page = ControllerHandler::call($route->getController(), $route->getAction(), $route->getParameters(), $this);
             $this->getApp()->getResponse()->setPage($page);
         } catch(ControllerNotFoundException $e) {
+            Logger::x($e);
             throw new PageNotFoundException();
         } catch(ControllerActionNotFoundException $e) {
+            Logger::x($e);
             throw new PageNotFoundException();
         }
     }
