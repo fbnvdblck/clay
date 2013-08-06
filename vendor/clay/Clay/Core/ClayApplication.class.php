@@ -23,7 +23,7 @@ class ClayApplication extends Application {
             $kernel->execute();
             $this->getResponse()->send();
         } catch(PageNotFoundException $e) {
-            Logger::x($e);
+            Logger::k($e->getMessage());
             $this->error404();
         }
     }

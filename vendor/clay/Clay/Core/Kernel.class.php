@@ -53,7 +53,7 @@ class Kernel extends ApplicationComponent {
         try {
             $route = $this->router->getRoute($request->getURI());
         } catch (RouteNotFoundException $e) {
-            Logger::x($e);
+            Logger::k($e->getMessage());
             throw new PageNotFoundException($e->getMessage());
         }
 
@@ -62,10 +62,10 @@ class Kernel extends ApplicationComponent {
             $page = ControllerHandler::call($route->getController(), $route->getAction(), $route->getParameters(), $this);
             $this->getApp()->getResponse()->setPage($page);
         } catch(ControllerNotFoundException $e) {
-            Logger::x($e);
+            Logger::k($e->getMessage());
             throw new PageNotFoundException();
         } catch(ControllerActionNotFoundException $e) {
-            Logger::x($e);
+            Logger::k($e->getMessage());
             throw new PageNotFoundException();
         }
     }
