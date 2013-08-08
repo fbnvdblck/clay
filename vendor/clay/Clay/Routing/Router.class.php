@@ -8,6 +8,7 @@ namespace Clay\Routing;
 use Clay\Clay;
 use Clay\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Yaml\Parser;
+use Clay\Logging\Logger;
 
 class Router {
 
@@ -55,7 +56,7 @@ class Router {
         try {
             $configuration = $parser->parse(file_get_contents($file));
         } catch (ParseException $e) {
-            printf("Unable to parse the YAML string: %s", $e->getMessage());
+            Logger::k("Unable to parse the YAML string: %s", $e->getMessage());
         }
 
         foreach($configuration['routes'] as $route) {
