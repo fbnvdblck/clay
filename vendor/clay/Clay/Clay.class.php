@@ -21,6 +21,5 @@ class Clay {
     // Clay configution
     const CONFIG_ROUTING = 'config/routing.yml';
     const CONFIG_DATABASE = 'config/databases.yml';
-    const CONFIG_APPLICATION = 'config/application.yml';
 }
 ?>

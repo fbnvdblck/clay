@@ -1,12 +1,12 @@
 routes:
     - name: home
       url: /
-      controller: core
+      controller: simple
       action: home
 
     - name: hello
-      url: /hello/([a-z]+)
-      controller: regex
+      url: /hello/([A-Za-z]+)
+      controller: morecomplex
       action: hello
       parameters:
         - name
