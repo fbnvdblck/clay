@@ -6,7 +6,6 @@
 use Clay\Controller\Controller;
 use Clay\Core\Kernel;
 use Elhena\Person;
-use Clay\Logging\Logger;
 use Clay\Database\DatabaseConnection;
 
 class SimpleController extends Controller {

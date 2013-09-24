@@ -11,8 +11,8 @@ use Clay\Logging\Logger;
 class ClayApplication extends Application {
     
     // Constructor
-    public function __construct($name) {
-        parent::__construct($name);
+    public function __construct($name, $environment = Application::ENV_PROD) {
+        parent::__construct($name, $environment);
     }
 
     // Method : Run

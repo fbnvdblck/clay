@@ -28,7 +28,11 @@ class Kernel extends ApplicationComponent {
         $this->router = new Router();
 
         $twigLoader = new \Twig_Loader_Filesystem('../' . Clay::RESOURCE_VIEW);
-        $this->twig = new \Twig_Environment($twigLoader, array('cache' => '../' . Clay::RESOURCE_CACHE));
+
+        if ($app->getEnvironment() == Application::ENV_PROD)
+            $this->twig = new \Twig_Environment($twigLoader, array('cache' => '../' . Clay::RESOURCE_CACHE));
+        else
+            $this->twig = new \Twig_Environment($twigLoader);
     }
 
     // Methods : Encapsulation

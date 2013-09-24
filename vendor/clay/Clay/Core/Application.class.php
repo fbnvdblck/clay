@@ -10,17 +10,23 @@ use Clay\Http\Response;
 
 abstract class Application {
 
+    // Constants
+    const ENV_PROD = "production";
+    const ENV_DEV = "developpment";
+
     // Attributes
     private $request;
     private $response;
     private $name;
+    private $environment;
 
 
     // Constructor
-    public function __construct($name) {
+    public function __construct($name, $environment = self::ENV_PROD) {
         $this->request = new Request();
         $this->response = new Response();
         $this->name = $name;
+        $this->environment = $environment;
     }
 
     // Methods : Encapsulation
@@ -35,6 +41,10 @@ abstract class Application {
 
     public function getName() {
         return $this->name;
+    }
+
+    public function getEnvironment() {
+        return $this->environment;
     }
 
     // Method : Run application
