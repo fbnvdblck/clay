@@ -48,6 +48,35 @@ class Router {
         throw new RouteNotFoundException("No route for the specified URL: " . $url);
     }
 
+    // Method : generate URL
+    public function generateUrl($routeName, $parameters) {
+        foreach ($this->routes as $route) {
+            if ($route->getName() == $routeName) {
+                $url = $route->getUrl();
+
+                if ($route->hasParameters()) {
+
+                    if (count($route->getParameters()) == count($parameters)) {
+                        $url = preg_replace("/\([^)]*\)/", "%", $url);
+                        foreach ($parameters as $parameter)
+                            $url = preg_replace("/%/", $parameter, $url, 1);
+
+                        return $url;
+                    }
+
+                    else
+                        throw new RouteNotFoundException("The parameters passed to build URL are incorrect");
+                }
+
+                else {
+                    return $url;
+                }
+            }
+        }
+
+        throw new RouteNotFoundException("The route called " . $routeName . " doesn't exist");
+    }
+
     // Method : Load routes
     public function load() {
         $file =  '../' . Clay::CONFIG_ROUTING;
