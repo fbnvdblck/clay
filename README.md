@@ -13,6 +13,7 @@ Clay
 * a logger feature with debug
 
 **How to install** 
+
 1. Extract Clay on your Web server
 2. Create at the root the folder 'logs' and 'cache' with good permissions (chmod 777)
 3. If you want use your own classes, create the folder 'model' in src/
